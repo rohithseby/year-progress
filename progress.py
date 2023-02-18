@@ -15,7 +15,7 @@ def send_req(content):
 
     data = {
         "content": content,
-        "avatar_url": "https://cdn.discordapp.com/attachments/431354432987594763/1073869298151464960/Pocket_service-Icon-White-Dark-Background-Logo.png",
+        "avatar_url": "https://i.pinimg.com/736x/9c/ed/98/9ced98a5437a7bed4b5575e1b4e732ab.jpg",
     }
 
     requests.post(url=url, data=json.dumps(data), headers=headers)
@@ -44,14 +44,12 @@ def check_progress(year_progress):
     else:
         progress["last_progress"] = year_progress
 
-    # with open("progress.json", "r+") as pw:
-    #     json.dump(progress, pw, indent=4)
+    with open("progress.json", "w") as pw:
+        json.dump(progress, pw, indent=4)
 
 
 def main():
     current_datetime = datetime.now(IST)
-
-    print(current_datetime)
 
     current_year = current_datetime.year
 
@@ -62,5 +60,7 @@ def main():
     year_progress = math.trunc((day_of_year / current_year_days) * 100)
 
     check_progress(year_progress=year_progress)
+
+    print(current_datetime)
 
     return current_datetime.strftime("%B %d %Y %H:%M:%S")
